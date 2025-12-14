@@ -2,6 +2,7 @@ import React from "react";
 import Button from "../Elements/Button";
 import CheckBox from "../Elements/CheckBox";
 import LabeledInput from "../Elements/LabeledInput";
+import { Link } from "react-router-dom"; // Import Link dari React Router
 
 const FormSignIn = () => {
   return (
@@ -21,7 +22,7 @@ const FormSignIn = () => {
           placeholder="*************"
           name="password"
         />
-        {/* Ikon Mata (Opsional, agar konsisten dengan SignUp) */}
+        {/* Ikon Mata */}
         <span className="absolute top-[40px] right-3 text-slate-400 cursor-pointer">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
@@ -30,10 +31,10 @@ const FormSignIn = () => {
         </span>
       </div>
 
-      {/* Komponen CheckBox */}
-      <CheckBox label="Keep me signed in" name="status" />
+      <div className="mb-6">
+        <CheckBox label="Keep me signed in" name="status" />
+      </div>
 
-      {/* Tombol Login Hijau */}
       <Button classname="w-full bg-teal-600 text-white hover:bg-teal-700">Login</Button>
 
       {/* Divider */}
@@ -44,7 +45,6 @@ const FormSignIn = () => {
         </span>
       </div>
 
-      {/* Tombol Google Abu-abu Muda */}
       <Button 
         variant="secondary" 
         type="button" 
@@ -61,6 +61,14 @@ const FormSignIn = () => {
           Continue with Google
         </span>
       </Button>
+
+      {/* Link Navigasi ke Register */}
+      <p className="text-sm mt-5 text-center text-slate-500">
+        Don't have an account?{" "}
+        <Link to="/register" className="font-bold text-teal-600 hover:underline">
+          Sign up
+        </Link>
+      </p>
     </form>
   );
 };
