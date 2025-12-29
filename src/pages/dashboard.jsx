@@ -1,51 +1,51 @@
 import React from "react";
 import MainLayout from "../components/Layouts/MainLayout";
-import Card from "../components/Elements/Card";
+// 1. Import Data dari src/data.jsx
+import { 
+  balances, 
+  goals, 
+  expensesStatistics, 
+  bills, 
+  transactions, 
+  expensesBreakdowns 
+} from "../data";
+
+// 2. Import Semua Fragment
+import CardBalance from "../components/Fragments/CardBalance";
+import CardGoal from "../components/Fragments/CardGoal";
+import CardUpcomingBill from "../components/Fragments/CardUpcomingBill";
+import CardRecentTransaction from "../components/Fragments/CardRecentTransaction";
+import CardStatistic from "../components/Fragments/CardStatistic";
+import CardExpenseBreakdown from "../components/Fragments/CardExpenseBreakdown";
 
 function DashboardPage() {
   return (
-    <MainLayout>
-      <div className="grid sm:grid-cols-12 sm:grid-rows-3 gap-6 h-full">
-        {/* Baris Atas */}
+    // Tambahkan prop title agar Header berubah menjadi "Overview"
+    <MainLayout title="Overview">
+      <div className="grid sm:grid-cols-12 gap-6 h-full font-poppins">
+        {/* --- BARIS ATAS --- */}
         <div className="sm:col-span-4">
-          <Card
-            title="Total Balance"
-            desc="Lorem ipsum dolor sit amet consectetur, adipisicing elit. In deleniti excepturi accusamus eveniet, quasi, expedita aspernatur minima dolor placeat voluptates laborum quis quos. Illo, quas sunt nobis soluta voluptas asperiores!"
-          />
+          {/* WAJIB: Kirim data balances agar muncul kartu hijau & Mastercard */}
+          <CardBalance data={balances} />
         </div>
         <div className="sm:col-span-4">
-          <Card
-            title="Goals"
-            desc="Lorem ipsum dolor sit amet consectetur, adipisicing elit. In deleniti excepturi accusamus eveniet, quasi, expedita aspernatur minima dolor placeat voluptates laborum quis quos. Illo, quas sunt nobis soluta voluptas asperiores!"
-          />
+          {/* WAJIB: Kirim data goals agar grafik lingkaran muncul */}
+          <CardGoal data={goals} />
         </div>
         <div className="sm:col-span-4">
-          <Card
-            title="Upcoming Bill"
-            link="/bill"
-            desc="Lorem ipsum dolor sit amet consectetur, adipisicing elit. In deleniti excepturi accusamus eveniet, quasi, expedita aspernatur minima dolor placeat voluptates laborum quis quos. Illo, quas sunt nobis soluta voluptas asperiores!"
-          />
+          <CardUpcomingBill data={bills} />
         </div>
 
-        {/* Baris Tengah & Bawah */}
+        {/* --- BARIS TENGAH & BAWAH --- */}
         <div className="sm:col-span-4 sm:row-span-2">
-          <Card
-            title="Recent Transaction"
-            link="/transaction"
-            desc="Lorem ipsum dolor sit amet consectetur, adipisicing elit. In deleniti excepturi accusamus eveniet, quasi, expedita aspernatur minima dolor placeat voluptates laborum quis quos. Illo, quas sunt nobis soluta voluptas asperiores!"
-          />
+          <CardRecentTransaction data={transactions} />
         </div>
         <div className="sm:col-span-8">
-          <Card
-            title="Statistics"
-            desc="Lorem ipsum dolor sit amet consectetur, adipisicing elit. In deleniti excepturi accusamus eveniet, quasi, expedita aspernatur minima dolor placeat voluptates laborum quis quos. Illo, quas sunt nobis soluta voluptas asperiores!"
-          />
+          {/* WAJIB: Kirim data agar grafik batang (Bar Chart) muncul */}
+          <CardStatistic data={expensesStatistics} />
         </div>
         <div className="sm:col-span-8">
-          <Card
-            title="Expenses Breakdown"
-            desc="Lorem ipsum dolor sit amet consectetur, adipisicing elit. In deleniti excepturi accusamus eveniet, quasi, expedita aspernatur minima dolor placeat voluptates laborum quis quos. Illo, quas sunt nobis soluta voluptas asperiores!"
-          />
+          <CardExpenseBreakdown data={expensesBreakdowns} />
         </div>
       </div>
     </MainLayout>
