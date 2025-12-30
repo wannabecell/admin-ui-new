@@ -1,0 +1,58 @@
+import React from "react";
+import Card from "../Elements/Card";
+import Icon from "../Elements/Icon";
+import CompositionExample from "../Elements/CompositionExample";
+
+const CardGoal = (props) => {
+  const { data } = props;
+
+  return (
+    <Card
+      title="Goals"
+      desc={
+        <div className="p-2">
+          <div className="flex justify-between items-center mb-4">
+            <div className="flex items-center gap-2">
+              <p className="text-2xl font-bold">${data.targetAmount.toLocaleString()}</p>
+              <div className="p-1 bg-gray-100 rounded cursor-pointer hover:bg-gray-200 transition-colors">
+                <Icon.Edit size={16} />
+              </div>
+            </div>
+            <p className="text-gray-400 text-sm">May, 2023</p>
+          </div>
+
+          <div className="flex justify-between items-center mt-6">
+            <div className="space-y-5">
+              <div className="flex items-start gap-3">
+                <div className="text-gray-400 mt-1">
+                  <Icon.Award size={20} />
+                </div>
+                <div>
+                  <p className="text-xs text-gray-400">Target Achieved</p>
+                  <p className="text-sm font-bold">${data.presentAmount.toLocaleString()}</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="text-gray-400 mt-1">
+                  <Icon.Target size={20} />
+                </div>
+                <div>
+                  <p className="text-xs text-gray-400">This Month Target</p>
+                  <p className="text-sm font-bold">${data.targetAmount.toLocaleString()}</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col items-center">
+              {/* Menggunakan CompositionExample yang datanya dikirim dari Dashboard */}
+              <CompositionExample data={(data.presentAmount / data.targetAmount) * 100} />
+              <p className="text-[10px] text-gray-400 mt-1 italic">Target vs Achievement</p>
+            </div>
+          </div>
+        </div>
+      }
+    />
+  );
+};
+
+export default CardGoal;
